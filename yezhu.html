@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>野猪跑下山</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: linear-gradient(#b9e7ff, #f3faff 72%);
+      font-family: system-ui, sans-serif;
+    }
+
+    svg {
+      width: min(100vw, 1000px);
+      height: auto;
+    }
+
+    .title {
+      font-size: 30px;
+      font-weight: 800;
+      fill: #365b3a;
+    }
+
+    .leg {
+      transform-box: fill-box;
+      transform-origin: 50% 0%;
+      animation: gallop .34s infinite alternate ease-in-out;
+    }
+
+    .leg.back { animation-delay: -.17s; }
+
+    @keyframes gallop {
+      from { transform: rotate(-28deg); }
+      to   { transform: rotate(30deg); }
+    }
+
+    .dust {
+      animation: puff .8s infinite ease-out;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .dust.second { animation-delay: -.4s; }
+
+    @keyframes puff {
+      0%   { opacity: 0; transform: scale(.4) translate(0, 0); }
+      40%  { opacity: .65; }
+      100% { opacity: 0; transform: scale(1.5) translate(-18px, -12px); }
+    }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 900 500" role="img" aria-label="一只野猪正在跑下山">
+    <!-- 远处的山 -->
+    <path d="M0 270 L180 80 L360 270 Z" fill="#a4c98b"/>
+    <path d="M230 300 L500 65 L760 300 Z" fill="#8db875"/>
+    <path d="M630 300 L780 145 L930 300 Z" fill="#b3d18e"/>
+    <path d="M180 80 L225 128 L180 116 L150 145 Z" fill="#f5fff0"/>
+    <path d="M500 65 L555 120 L500 106 L458 143 Z" fill="#f5fff0"/>
+
+    <!-- 山坡 -->
+    <path d="M0 245 C210 245 340 285 490 330 C650 378 760 405 900 418
+             L900 500 L0 500 Z" fill="#86b965"/>
+    <path d="M0 245 C210 245 340 285 490 330 C650 378 760 405 900 418"
+          fill="none" stroke="#527d43" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- 小草 -->
+    <g fill="none" stroke="#477b3c" stroke-width="4" stroke-linecap="round">
+      <path d="M130 305 l-8 -18 M130 305 l8 -20"/>
+      <path d="M700 420 l-8 -17 M700 420 l9 -18"/>
+      <path d="M835 443 l-8 -18 M835 443 l9 -16"/>
+    </g>
+
+    <text x="32" y="55" class="title">野猪跑下山！</text>
+
+    <!-- 扬起的尘土 -->
+    <g class="dust" fill="#d8c69a">
+      <circle cx="0" cy="0" r="8"/>
+      <circle cx="12" cy="-5" r="5"/>
+    </g>
+    <g class="dust second" fill="#d8c69a">
+      <circle cx="0" cy="0" r="7"/>
+      <circle cx="12" cy="-5" r="5"/>
+    </g>
+
+    <!-- 野猪：沿山坡动画移动 -->
+    <g>
+      <animateMotion
+        dur="4s"
+        repeatCount="indefinite"
+        rotate="auto"
+        path="M 30,165 C 210,175 335,220 470,265 S 710,335 920,365"/>
+
+      <!-- 尾巴 -->
+      <path d="M-52 -5 Q-74 -24 -72 -38 Q-57 -34 -56 -20"
+            fill="none" stroke="#493329" stroke-width="7" stroke-linecap="round"/>
+
+      <!-- 后腿 -->
+      <g class="leg back">
+        <path d="M-36 17 L-42 49 L-30 51 L-20 22" fill="#493329"/>
+        <path d="M-43 48 L-28 48 L-25 55 L-47 55 Z" fill="#30251f"/>
+      </g>
+      <g class="leg">
+        <path d="M-10 18 L-8 49 L5 50 L10 19" fill="#493329"/>
+        <path d="M-10 48 L6 48 L10 55 L-12 55 Z" fill="#30251f"/>
+      </g>
+
+      <!-- 身体 -->
+      <ellipse cx="0" cy="0" rx="57" ry="31" fill="#704936"/>
+      <path d="M-42 -9 Q-20 -37 8 -27 Q31 -22 46 -7"
+            fill="none" stroke="#8b5d3e" stroke-width="8" stroke-linecap="round"/>
+
+      <!-- 前腿 -->
+      <g class="leg">
+        <path d="M22 17 L27 49 L40 50 L43 10" fill="#493329"/>
+        <path d="M26 48 L42 48 L47 55 L25 55 Z" fill="#30251f"/>
+      </g>
+      <g class="leg back">
+        <path d="M42 12 L51 43 L64 42 L62 1" fill="#493329"/>
+        <path d="M50 41 L65 40 L71 47 L50 49 Z" fill="#30251f"/>
+      </g>
+
+      <!-- 头和嘴鼻 -->
+      <path d="M30 -24 Q48 -46 69 -32 Q81 -23 75 -6 L59 8 L34 3 Z"
+            fill="#704936"/>
+      <ellipse cx="77" cy="-14" rx="16" ry="11" fill="#8b5d3e"/>
+      <ellipse cx="88" cy="-14" rx="4" ry="3" fill="#30251f"/>
+
+      <!-- 耳朵 -->
+      <path d="M42 -34 Q34 -55 52 -50 Q62 -43 56 -30 Z" fill="#493329"/>
+      <path d="M45 -39 Q43 -48 51 -45" fill="none" stroke="#bd8d70" stroke-width="3"/>
+
+      <!-- 眼睛 -->
+      <circle cx="62" cy="-29" r="3.5" fill="#171411"/>
+
+      <!-- 獠牙 -->
+      <path d="M65 -4 Q69 8 76 5 Q77 0 72 -5" fill="#fff2ce"/>
+      <!-- 背上的鬃毛 -->
+      <path d="M-34 -25 L-27 -39 L-19 -27 L-9 -42 L-2 -27
+               L9 -40 L15 -24 L27 -34 L31 -18"
+            fill="#3c2b24" stroke="#3c2b24" stroke-width="4"
+            stroke-linejoin="round"/>
+    </g>
+  </svg>
+</body>
+</html>
